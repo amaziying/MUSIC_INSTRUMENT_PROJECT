@@ -23,28 +23,19 @@ float D_normal = 293.66;
 float E_normal = 329.63;
 
 float F_sharp = 185.00;
-//float F_flat; can't find this?
+float F_flat = E_normal;
 float G_sharp = 207.65;
 float G_flat = 185.00;
 float A_sharp = 233.08;
 float A_flat = 207.65;
-//float B_sharp; can't find this?
+float B_sharp = C_normal;
 float B_flat = 233.08;
 float C_sharp = 277.18;
-//float C_flat; can't find this?? 
+float C_flat = B_normal; 
 float D_sharp = 311.13;
-//float D_flat; can't find this gah
-//float E_sharp; whattt can't find
+float D_flat = C_sharp;
+float E_sharp = F_flat;
 float E_flat = 311.13;
-
-float F_octave_high = 349.23;
-float G_octave_high = 392.00;
-float A_octave_high = 440.00;
-float B_octave_high = 493.88;
-float C_octave_high = 523.25;
-float D_octave_high = 587.33;
-float E_octave_high = 659.25;
-
 
 // variable qualifier - variable 'state' will be loaded from RAM
 volatile int state=LOW;
