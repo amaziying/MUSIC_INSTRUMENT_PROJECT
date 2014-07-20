@@ -1,15 +1,15 @@
 // BUTTONS CORRESPOND TO NOTES (arranged low to high)
 // CONNECTED TO PINS
-int f = 3;
-int g = 4;
-int a = 5;
-int b = 6;
-int c = 7;
-int d = 8;
-int e = 9;
+int f = 4;
+int g = 5;
+int a = 6;
+int b = 7;
+int c = 8;
+int d = 9;
+int e = 10;
 
 // Declare speaker
-int speaker = 10;
+int speaker = 11;
 
 //LIST OF FREQUECIES PER NOTE
 // Each frequency is a variable
@@ -38,7 +38,9 @@ float E_sharp = F_flat;
 float E_flat = 311.13;
 
 // variable qualifier - variable 'state' will be loaded from RAM
-volatile int state=LOW;
+// this is for interrupt function for the buttons
+volatile int state1=LOW;
+volatile int state2=LOW;
 
 void setup(){
 
@@ -55,21 +57,63 @@ pinMode(speaker, OUTPUT);
 // parameter1 - interrupt (0 or 1)
 // parameter2 - name of the interrupt handler function 
 // parameter3 - trigger(CHANGE,LOW,RISING or FALLING)
-attachInterrupt(0,handler,CHANGE);
+// this interrupt function is mapped to pin 2
+attachInterrupt(0,notes,CHANGE);
+
+// parameter1 - interrupt (0 or 1)
+// parameter2 - name of the interrupt handler function 
+// parameter3 - trigger(CHANGE,LOW,RISING or FALLING)
+// this interrupt function is mapped to pin 3
+attachInterrupt(1,flat_sharp,CHANGE);
 
 }
 
 void loop(){
 //digitalWrite(pin,state);
 
-// CODE TO MAKE SPEAKER SPEAK
-//tone(speaker, FREQUENCY);
-
 }
 
 // interrupt handler function 
-void handler(){
-state=!state;
+void notes(){
+state1=!state1;
+
+
+//WITH ANOJAN'S SETUP - INTERRUPT ALWAYS HIGH UNTIL IT DETECTS LOW
+// PINS STAY LOW UNTIL HIGH)
+//This is half pseudo and half real code.
+//To make speaker output frequency, use if statements 
+
+if (digitalRead(4)==HIGH) {
+  tone(speaker, F_normal);
+}
+
+if (digitalRead(5)==HIGH) {
+  tone(speaker, G_normal);
+}
+
+if (digitalRead(6)==HIGH) {
+  tone(speaker, A_normal);
+}
+
+if (digitalRead(7)==HIGH) {
+  tone(speaker, B_normal);
+}
+
+if (digitalRead(8)==HIGH) {
+  tone(speaker, C_normal);
+}
+
+if (digitalRead(9)==HIGH) {
+  tone(speaker, D_normal);
+}
+
+if (digitalRead(10)==HIGH) {
+  tone(speaker, E_normal);
+}
+
+void flat_sharp(){
+state2=!state2;
+
 }
 
 
