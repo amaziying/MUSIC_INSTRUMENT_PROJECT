@@ -1,10 +1,10 @@
 // BUTTONS CORRESPOND TO NOTES (arranged low to high)
 // CONNECTED TO PINS
-int f = 4;
-int g = 5;
-int a = 6;
-int b = 7;
-int c = 8;
+const int f = 4;
+const int g= 5;
+const int a = 6;
+const int b = 7;
+const int c = 8;
 int d = 9;
 int e = 10;
 
@@ -39,8 +39,8 @@ float E_flat = 311.13;
 
 // variable qualifier - variable 'state' will be loaded from RAM
 // this is for interrupt function for the buttons
-volatile int state1=LOW;
-volatile int state2=LOW;
+volatile int flat=LOW;
+volatile int sharp=LOW;
 
 void setup(){
 
@@ -58,13 +58,13 @@ pinMode(speaker, OUTPUT);
 // parameter2 - name of the interrupt handler function 
 // parameter3 - trigger(CHANGE,LOW,RISING or FALLING)
 // this interrupt function is mapped to pin 2
-attachInterrupt(0,notes,CHANGE);
+attachInterrupt(0,notes,LOW);
 
 // parameter1 - interrupt (0 or 1)
 // parameter2 - name of the interrupt handler function 
 // parameter3 - trigger(CHANGE,LOW,RISING or FALLING)
 // this interrupt function is mapped to pin 3
-attachInterrupt(1,flat_sharp,CHANGE);
+attachInterrupt(1,flat_sharp,LOW);
 
 }
 
@@ -83,36 +83,36 @@ state1=!state1;
 //This is half pseudo and half real code.
 //To make speaker output frequency, use if statements 
 
-if (digitalRead(4)==HIGH) {
+if (digitalRead(f)==HIGH) {
   tone(speaker, F_normal);
 }
 
-if (digitalRead(5)==HIGH) {
+if (digitalRead(g)==HIGH) {
   tone(speaker, G_normal);
 }
 
-if (digitalRead(6)==HIGH) {
+if (digitalRead(a)==HIGH) {
   tone(speaker, A_normal);
 }
 
-if (digitalRead(7)==HIGH) {
+if (digitalRead(b)==HIGH) {
   tone(speaker, B_normal);
 }
 
-if (digitalRead(8)==HIGH) {
+if (digitalRead(c)==HIGH) {
   tone(speaker, C_normal);
 }
 
-if (digitalRead(9)==HIGH) {
+if (digitalRead(d)==HIGH) {
   tone(speaker, D_normal);
 }
 
-if (digitalRead(10)==HIGH) {
+if (digitalRead(e)==HIGH) {
   tone(speaker, E_normal);
 }
 
 void flat_sharp(){
-state2=!state2;
+
 
 }
 
